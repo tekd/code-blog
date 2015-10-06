@@ -17,3 +17,17 @@
 * {
   font-family: Arial, sans-serif;
 }
+
+body {
+  margin: 2%;
+}
+
+.lesson-content {
+  padding:5%;
+}
+
+.code-display {
+  border: 1px solid black;
+  margin: 5% 0 5% 0;
+
+}
