@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LittleLessons</title>
+  <title>code blog</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
 
   <%= link_to "Home", root_path %>
-  <%= link_to "Create a new lesson", new_lesson_path %>
 
+
+
+  <% if is_authenticated? %>
+    Logged in as: <%= current_user.username%>
+    <%= link_to "Create a new lesson", new_lesson_path %>
+    <%= link_to 'Logout', logout_path, method: 'delete' %>
+  <% else %>
+    <%= link_to 'Login', login_path %>
+  <%end%>
+
+  <div class="errors">
+    <% flash.each do |key,msg| %>
+      <%= msg[0] %>
+    <%end%>
+  </div>
+
+
+  </nav>
 <%= yield %>
 
 </body>

@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+before_action :require_logged_in, only: [:new, :create, :update, :destroy]
   def show
     @lesson = Lesson.find(params[:id])
   end
@@ -35,7 +36,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
-    flash[:notice] = "Lesson has been deleted."
+    flash[:notice] = ["Lesson has been deleted."]
     redirect_to root_path
 
   end
