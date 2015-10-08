@@ -1,7 +1,9 @@
 <h2>Create a new lesson</h2>
 
+<div class="lesson-form">
 <%=form_for @lesson do |f| %>
-  <%= f.text_area :title , size: "100X5", placeholder: "title"%> <br>
-  <%= f.text_area :body, size: "100x50"%><br>
+  <%= f.text_area :title , size: "80X5", placeholder: "title", class: "lesson-form"%> <br>
+  <%= f.text_area :body, size: "80x20", class: "lesson-form"%><br>
   <%= f.submit "Create" %>
 <% end %>
+</div>
