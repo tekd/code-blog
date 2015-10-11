@@ -5,31 +5,87 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+  <link href="http://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type="text/css">
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav>
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <%= link_to "Home", root_path, class: "blog-nav-item" %>
+          <% if is_authenticated? %>
+            Logged in as: <%= current_user.username%>
+            <%= link_to "Create a new lesson", new_lesson_path, class: "blog-nav-item"  %>
+            <%= link_to 'Logout', logout_path, method: 'delete', class: "blog-nav-item"  %>
+            <% else %>
+            <%= link_to 'Login', login_path, class: "blog-nav-item"  %>
+          <%end%>
+        </nav>
+      </div>
+    </div>
+  <div class="container">
 
-  <%= link_to "Home", root_path %>
-
-
-
-  <% if is_authenticated? %>
-    Logged in as: <%= current_user.username%>
-    <%= link_to "Create a new lesson", new_lesson_path %>
-    <%= link_to 'Logout', logout_path, method: 'delete' %>
-  <% else %>
-    <%= link_to 'Login', login_path %>
-  <%end%>
+<div class="blog-header">
+      <h1 class="blog-title">Code Blog </h1>
+      <p class="lead blog-description">bite-sized lessons on programming concepts</p>
+      </div>
+<div class="col-sm-8 blog-main">
 
   <div class="errors">
     <% flash.each do |key,msg| %>
       <%= msg[0] %>
     <%end%>
   </div>
+    <div class="container">
+      <div class="row"</div>
+        <%= yield %>
+      </div>
+    </div>
+</div>
 
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>I’m Denny, web developer in perpetual training. This blog highlights programming concepts in bite-sized, easily digestible pieces. </p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">October 2015</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Say hi</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/tekd">GitHub</a></li>
+              <li><a href="https://twitter.com/dtek2112">Twitter</a></li>
+              <li><a href="https://linkedin.com/in/dennytek">LinkedIn</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+      </div>
+<footer class="blog-footer">
+  <a href="#">Back to top</a>
+</p>
+</footer>
 
-  </nav>
-<%= yield %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
 
 </body>
+
 </html>
+
+
