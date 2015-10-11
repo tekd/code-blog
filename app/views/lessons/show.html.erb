@@ -1,11 +1,22 @@
-<div class="lesson-content">
-  <h2><%= @lesson.title %></h2>
+<div class="col-sm-8 blog-main">
 
-  <%= raw @lesson.body %>
-</div>
-
-
-<% if is_authenticated? %>
+  <% if is_authenticated? %>
   <%=link_to "Edit", edit_lesson_path%>
   <%=link_to "Delete", lesson_path, method: :delete %>
-<%end%>
+  <%end%>
+
+  <div class="blog-post">
+    <h2 class="blog-post-title"><%=@lesson.title%></h2>
+    <p class="blog-post-meta"><%=@lesson.created_at%> by <a href="http://www.dennytek.com">Denny</a></p>
+      <%=raw @lesson.body%>
+  <nav>
+    <ul class="pager">
+      <li><a href="#">Previous</a></li>
+      <li><a href="#">Next</a></li>
+    </ul>
+  </nav>
+  </div><!-- /.blog-post -->
+
+
+</div><!-- /.blog-main -->
+
