@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         redirect_to root_path, notice: ["Your account has been updated."]
       else
         flash[:alert] = @user.errors.full_messages
-        render :
+        redirect_to root_path
       end
 
     end
