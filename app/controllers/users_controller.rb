@@ -13,28 +13,27 @@ class UsersController < ApplicationController
       flash[:alert] = @user.errors.full_messages
       render :new
     end
+  end
 
-    def edit
-      @user = User.find(params[:id])
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.assign_attributes(user_params)
+    if @user.save
+      redirect_to root_path, notice: ["Your account has been updated."]
+    else
+      flash[:alert] = @user.errors.full_messages
+      redirect_to root_path
     end
+  end
 
-    def update
-      @user = User.find(params[:id])
-      @user.assign_attributes(user_params)
-      if @user.save
-        redirect_to root_path, notice: ["Your account has been updated."]
-      else
-        flash[:alert] = @user.errors.full_messages
-        redirect_to root_path
-      end
+  private
 
-    end
-
-    private
-
-    def user_params
-      params.require(:user).permit(:username, :email, :role, :password)
-    end
-
+  def user_params
+    params.require(:user).permit(:username, :email, :role, :password)
+  end
 
 end
